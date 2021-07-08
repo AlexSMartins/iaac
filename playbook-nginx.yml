@@ -38,9 +38,14 @@
           <p> Data Atual {{ ansible_date_time.iso8601 }} </p>
           <p> conteudo da instalacao do nginx: {{ var_nginx }} </p>
           <p> Conteudo da variavel "Datacenter" do inventario: {{ datacenter }}
-
+    notify: Restart nginx
   - name: Enable and start nginx service
     systemd:
        state: started
        name: nginx
        enabled: yes
+  handlers:
+       - name: Restart nginx
+         service:
+           name: nginx
+           state: restarted

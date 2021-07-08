@@ -1,0 +1,23 @@
+all:
+   vars:
+      ansible_user: 'vagrant'
+      ansible_become: 'yes'
+      ansible_become_method: 'sudo'
+      repo_install: '/opt/slacko-api/'
+      repo_files: '/vagrant/ansible_slacko/files/'
+      repo_services: '/etc/systemd/system/'
+
+local:
+   vars:
+      var_do_inventory: 'Inv-Var'
+
+   hosts:
+     10.0.0.10:
+        datacenter: primario
+remoto:
+  vars:
+      var_do_inventory: 'Inv-Var'
+      
+  hosts:
+    10.0.0.11:
+       datacenter: secundario
